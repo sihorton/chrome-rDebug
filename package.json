@@ -1,0 +1,16 @@
+{
+  "name": "chrome-rdebug",
+  "version": "0.0.1",
+  "description": "Api for using chrome remote debugging protocol. Used by AppJS v2.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sihorton/chrome-rDebug.git"
+  },
+  "keywords": [
+    "remote",
+    "debug"
+  ],
+  "author": "sihorton",
+  "license": "MIT"
+}
