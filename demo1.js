@@ -20,6 +20,9 @@ rDebugApi.ws.on('close',function() {
 var printErr = function(err) {
 	console.log("error:"+err.error.code+" "+err.error.message);
 };
+rDebugApi.on('*',function(event) {
+	console.log("Event:",event);
+});
 rDebugApi.ws.on('open',function() {
 	console.log('connected');
 	

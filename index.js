@@ -21,8 +21,8 @@ var rDebug = {
 			"version":0.1
 			,ws:null
 			,requestId:0
-			,responses:{
-			
+			,responses:{}
+			,ehandlers:{
 			
 			/**** PAGE API ****/
 			},pageNavigate:function(pageUrl) {
@@ -616,10 +616,15 @@ var rDebug = {
 				}
 				rDebugApi.ws.send(JSON.stringify(req));
 				return deferred.promise;
+			},on:function(event,handler) {
+				console.log("adding event handler:",event);
+				if (!rDebugApi.ehandlers[event]) rDebugApi.ehandlers[event] = [];
+				rDebugApi.ehandlers[event].push(handler);
 			}
 		}
 		rDebugApi.ws = new WebSocket(wsUrl, {protocolVersion: 8, origin: 'http://localhost/'});
 		rDebugApi.ws.on('message',function(mess) {
+			try {
 			var m;
 			eval("m="+mess);
 			if (rDebugApi.responses[m.id]) {
@@ -631,7 +636,22 @@ var rDebug = {
 			} else {
 				if (m.error) {
 					console.log("error:"+err.error.code+" "+err.error.message);
+				} else {
+					if(rDebugApi.ehandlers[m.method]) {
+						for(var h=0;h < rDebugApi.ehandlers[m.method].length;h++) {
+							rDebugApi.ehandlers[m.method][h](m);
+						}
+					}
+					if(rDebugApi.ehandlers['*']) {
+						for(var h=0;h < rDebugApi.ehandlers['*'].length;h++) {
+							rDebugApi.ehandlers['*'][h](m);
+						}
+					}
+					
 				}
+			}
+			}catch(e) {
+				console.log(e);
 			}
 		});		
 		return rDebugApi;
