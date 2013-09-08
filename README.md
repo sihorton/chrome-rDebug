@@ -81,10 +81,12 @@ Register to handle a given event, use '*' to handle all events.
 
 Event Api Example code:-
 
-rDebugApi.on('DOM.documentUpdated',function(event) {
-	console.log("Event:document updated");
-});
-rDebugApi.on('*',function(event) {
-  //fired for all events.
-	console.log("Event:",event);
-});
+    rDebugApi.on('DOM.documentUpdated',function(event) {
+        console.log("Event:document updated");
+    });
+    rDebugApi.on('*',function(event) {
+        //fired for all events.
+        console.log("Event:",event);
+    });
+
+Methods like consoleEnable will turn on console events so you can handle them. consoleDisable and similar functions will then turn off those events.
