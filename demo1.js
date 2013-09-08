@@ -17,11 +17,15 @@ var rDebugApi = rDebug.openSocket('ws://localhost:9222/devtools/page/A4CB0085-8A
 rDebugApi.ws.on('close',function() {
 	console.log('disconnected');
 });
+var printErr = function(err) {
+	console.log("error:"+err.error.code+" "+err.error.message);
+};
 rDebugApi.ws.on('open',function() {
 	console.log('connected');
 	
-	rDebugApi.getDoc().then(function(doc) {
-		rDebugApi.getOuterHTML(doc.root.nodeId)
+	rDebugApi.domGetDocument().then(function(doc) {
+	console.log("here");
+		rDebugApi.domGetOuterHTML(doc.root.nodeId)
 		.then(function(res) {
 			console.log("page html:",res.outerHTML);
 			rDebugApi.pageNavigate("http://appjs.com").then(function() {
@@ -34,5 +38,5 @@ rDebugApi.ws.on('open',function() {
 		}).fail(function(err) {
 			console.log("error:"+err.error.code+" "+err.error.message);
 		});
-	});
+	}).fail(printErr);
 });

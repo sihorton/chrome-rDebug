@@ -7,6 +7,7 @@
 * Timeline: Implemented
 * DOM: Implemented
 * DOMDebugger: Implemented
+* Network: Implemented
 */
 var WebSocket = require('ws');
 var Q = require('q');
@@ -142,8 +143,8 @@ var rDebug = {
 						,"y":y
 						,"width":width
 						,"height":height
-						"color":color
-						"outlineColor":outlineColor
+						,"color":color
+						,"outlineColor":outlineColor
 					}
 				}
 				rDebugApi.ws.send(JSON.stringify(req));
@@ -499,6 +500,119 @@ var rDebug = {
 				var rId = rDebugApi.requestId++;
 				rDebugApi.responses[rId] = deferred;
 				rDebugApi.ws.send('{"id":'+rId+',"method": "Timeline.End"}');
+				return deferred.promise;
+			
+			
+			/**** Network API ****/
+			
+			},networkCanClearBrowserCache:function() {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"Network.canClearBrowserCache"
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
+				return deferred.promise;
+			},networkCanClearBrowserCookies:function() {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"Network.canClearBrowserCookies"
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
+				return deferred.promise;
+			},networkClearBrowserCache:function() {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"Network.ClearBrowserCache"
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
+				return deferred.promise;
+			},networkClearBrowserCookies:function() {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"Network.canClearBrowserCookies"
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
+				return deferred.promise;
+			},networkEnableEvents:function() {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"Network.enable"
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
+				return deferred.promise;
+			},networkDisableEvents:function() {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"Network.disable"
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
+				return deferred.promise;
+			},networkGetResponseBody:function(requestId) {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"Network.getResponseBody"
+					,"params":{
+						"requestId":requestId
+					}
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
+				return deferred.promise;
+			},networkSetCacheDisabled:function() {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"Network.setCacheDisabled"
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
+				return deferred.promise;
+			},networkSetExtraHTTPHeaders:function(headers) {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"Network.setExtraHTTPHeaders"
+					,"params":{
+						"headers":headers
+					}
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
+				return deferred.promise;
+			},networkSetUserAgentOverride:function(userAgent) {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"Network.setUserAgentOverride"
+					,"params":{
+						"userAgent":userAgent
+					}
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
 				return deferred.promise;
 			}
 		}
