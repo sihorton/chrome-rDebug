@@ -27,7 +27,6 @@ rDebugApi.ws.on('open',function() {
 	console.log('connected');
 	
 	rDebugApi.domGetDocument().then(function(doc) {
-	console.log("here");
 		rDebugApi.domGetOuterHTML(doc.root.nodeId)
 		.then(function(res) {
 			console.log("page html:",res.outerHTML);

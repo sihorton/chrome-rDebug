@@ -276,7 +276,7 @@ var rDebug = {
 				}
 				rDebugApi.ws.send(JSON.stringify(req));
 				return deferred.promise;
-			},setAttributesAsText:function(nodeId,text,name) {
+			},domSetAttributesAsText:function(nodeId,text,name) {
 				var deferred = Q.defer();
 				var rId = rDebugApi.requestId++;
 				rDebugApi.responses[rId] = deferred;
@@ -291,7 +291,7 @@ var rDebug = {
 				}
 				rDebugApi.ws.send(JSON.stringify(req));
 				return deferred.promise;
-			},setNodeName:function(nodeId,name) {
+			},domSetNodeName:function(nodeId,name) {
 				var deferred = Q.defer();
 				var rId = rDebugApi.requestId++;
 				rDebugApi.responses[rId] = deferred;
@@ -305,7 +305,7 @@ var rDebug = {
 				}
 				rDebugApi.ws.send(JSON.stringify(req));
 				return deferred.promise;
-			},setNodeValue:function(nodeId,value) {
+			},domSetNodeValue:function(nodeId,value) {
 				var deferred = Q.defer();
 				var rId = rDebugApi.requestId++;
 				rDebugApi.responses[rId] = deferred;
@@ -654,6 +654,7 @@ var rDebug = {
 				console.log(e);
 			}
 		});		
+		console.log(rDebugApi);
 		return rDebugApi;
 	}
 };

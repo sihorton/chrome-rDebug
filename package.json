@@ -1,7 +1,7 @@
 {
   "name": "chrome-rdebug",
-  "version": "0.0.8",
-  "description": "Api for using chrome remote debugging protocol. Used by AppJS v2.0",
+  "version": "0.0.9",
+  "description": "Full implementation of the chrome/webkit remote debugging protocol. Implemented to use as the bridge for AppJS v2.0",
   "main": "index.js",
   "repository": {
     "type": "git",
