@@ -1,6 +1,6 @@
 {
   "name": "chrome-rdebug",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Api for using chrome remote debugging protocol. Used by AppJS v2.0",
   "main": "index.js",
   "repository": {

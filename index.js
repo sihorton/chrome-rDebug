@@ -6,6 +6,7 @@
 * Runtime: Implemented
 * Timeline: Implemented
 * DOM: Implemented
+* DOMDebugger: Implemented
 */
 var WebSocket = require('ws');
 var Q = require('q');
@@ -325,6 +326,88 @@ var rDebug = {
 					,"params":{
 						"nodeId":nodeId
 						,"outerHTML":html
+					}
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
+				return deferred.promise;
+			
+			/**** DOM Debugger API ****/
+			},domDebuggerRemoveDomBreakpoint:function(nodeId,type) {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"DOMDebugger.removeDOMBreakpoint"
+					,"params":{
+						"nodeId":nodeId
+						,"type":type
+					}
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
+				return deferred.promise;
+			},domDebuggerRemoveEventListenerBreakpoint:function(eventName) {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"DOMDebugger.removeEventListenerBreakpoint"
+					,"params":{
+						"eventName":eventName
+					}
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
+				return deferred.promise;
+			},domDebuggerRemoveXHRBreakpoint:function(url) {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"DOMDebugger.removeXHRBreakpoint"
+					,"params":{
+						"url":url
+					}
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
+				return deferred.promise;
+			},domDebuggerSetDomBreakpoint:function(nodeId,type) {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"DOMDebugger.setDOMBreakpoint"
+					,"params":{
+						"nodeId":nodeId
+						,"type":type
+					}
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
+				return deferred.promise;
+			},domDebuggerSetEventListenerBreakpoint:function(eventName) {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"DOMDebugger.setEventListenerBreakpoint"
+					,"params":{
+						"eventName":eventName
+					}
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
+				return deferred.promise;
+			},domDebuggerSetXHRBreakpoint:function(url) {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"DOMDebugger.setXHRBreakpoint"
+					,"params":{
+						"url":url
 					}
 				}
 				rDebugApi.ws.send(JSON.stringify(req));
