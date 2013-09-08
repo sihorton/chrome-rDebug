@@ -1,4 +1,5 @@
 /**
+* @author: sihorton
 * Implementation of chrome remote debugging protocol: 
 * https://developers.google.com/chrome-developer-tools/docs/protocol/1.0/index
 * Console: Implemented
@@ -9,6 +10,7 @@
 * DOMDebugger: Implemented
 * Network: Implemented
 */
+
 var WebSocket = require('ws');
 var Q = require('q');
 
