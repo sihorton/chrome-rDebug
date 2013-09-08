@@ -5,6 +5,7 @@
 * Page: Implemented
 * Runtime: Implemented
 * Timeline: Implemented
+* DOM: Implemented
 */
 var WebSocket = require('ws');
 var Q = require('q');
@@ -77,21 +78,244 @@ var rDebug = {
 				rDebugApi.ws.send('{"id":'+rId+',"method": "Console.disable"}');
 				return deferred.promise;
 				
-			/****  API ****/
+			/**** DOM API ****/
 			
-			},getDoc:function() {
+			},domGetAttributes:function(nodeId) {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"DOM.getAttributes"
+					,"params":{
+						"nodeId":nodeId
+					}
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
+				return deferred.promise;
+			},domGetDocument:function() {
 				var deferred = Q.defer();
 				var rId = rDebugApi.requestId++;
 				rDebugApi.responses[rId] = deferred;
 				rDebugApi.ws.send('{"id":'+rId+',"method": "DOM.getDocument"}');
 				return deferred.promise;
-			},getOuterHTML:function(nodeId) {
+			},domGetOuterHTML:function(nodeId) {
 				var deferred = Q.defer();
 				var rId = rDebugApi.requestId++;
 				rDebugApi.responses[rId] = deferred;
 				rDebugApi.ws.send('{"id":'+rId+',"method": "DOM.getOuterHTML","params":{"nodeId":'+nodeId+'}}');
 				return deferred.promise;
-			},setOuterHTML:function(nodeId,html) {
+			},domHideHighlight:function() {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"DOM.hideHighlight"
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
+				return deferred.promise;
+			},domHighlightNode:function(nodeId,highlightConfig) {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"DOM.highlightNode"
+					,"params":{
+						"nodeId":nodeId
+						,"highlightConfig":highlightConfig
+					}
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
+				return deferred.promise;
+			},domHighlighRect:function(x,y,width,height,color,outlineColor) {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"DOM.highlightRect"
+					,"params":{
+						"x":x
+						,"y":y
+						,"width":width
+						,"height":height
+						"color":color
+						"outlineColor":outlineColor
+					}
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
+				return deferred.promise;
+			},domMoveTo:function(nodeId,targetNodeId,insertBeforeNodeId) {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"DOM.moveTo"
+					,"params":{
+						"nodeId":nodeId
+						,"targetNodeId":targetNodeId
+						,"insertBeforeNodeId":insertBeforeNodeId
+					}
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
+				return deferred.promise;
+			},domQuerySelector:function(nodeId,selector) {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"DOM.querySelector"
+					,"params":{
+						"nodeId":nodeId
+						,"selector":selector
+					}
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
+				return deferred.promise;
+			},domQuerySelectorAll:function(nodeId,selector) {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"DOM.querySelectorAll"
+					,"params":{
+						"nodeId":nodeId
+						,"selector":selector
+					}
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
+				return deferred.promise;
+			},domRemoveAttribute:function(nodeId,name) {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"DOM.removeAttribute"
+					,"params":{
+						"nodeId":nodeId
+						,"name":name
+					}
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
+				return deferred.promise;
+			},domRemoveNode:function(nodeId) {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"DOM.removeNode"
+					,"params":{
+						"nodeId":nodeId
+					}
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
+				return deferred.promise;
+			},domRequestChildNodes:function(nodeId,html) {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"DOM.requestChildNodes"
+					,"params":{
+						"nodeId":nodeId
+					}
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
+				return deferred.promise;
+			},domRequestNode:function(objectId) {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"DOM.requestNode"
+					,"params":{
+						"objectId":objectId
+					}
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
+				return deferred.promise;
+			},domResolveNode:function(nodeId,objectGroup) {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"DOM.resolveNode"
+					,"params":{
+						"nodeId":nodeId
+						,"objectGroup":objectGroup
+					}
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
+				return deferred.promise;
+			},domSetAttributeValue:function(nodeId,name,value) {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"DOM.setAttributeValue"
+					,"params":{
+						"nodeId":nodeId
+						,"name":name
+						,"value":value
+					}
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
+				return deferred.promise;
+			},setAttributesAsText:function(nodeId,text,name) {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"DOM.setAttributesAsText"
+					,"params":{
+						"nodeId":nodeId
+						,"text":text
+						,"name":name
+					}
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
+				return deferred.promise;
+			},setNodeName:function(nodeId,name) {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"DOM.setNodeName"
+					,"params":{
+						"nodeId":nodeId
+						,"name":name
+					}
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
+				return deferred.promise;
+			},setNodeValue:function(nodeId,value) {
+				var deferred = Q.defer();
+				var rId = rDebugApi.requestId++;
+				rDebugApi.responses[rId] = deferred;
+				var req = {
+					"id":rId
+					,"method":"DOM.setNodeValue"
+					,"params":{
+						"nodeId":nodeId
+						,"value":value
+					}
+				}
+				rDebugApi.ws.send(JSON.stringify(req));
+				return deferred.promise;
+			},domSetOuterHTML:function(nodeId,html) {
 				var deferred = Q.defer();
 				var rId = rDebugApi.requestId++;
 				rDebugApi.responses[rId] = deferred;
