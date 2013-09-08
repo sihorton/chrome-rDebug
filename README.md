@@ -15,65 +15,65 @@ Page Api:
  
 Console Api:
 ============
-*consoleClearMessages
-*consoleEnable
-*consoleDisable
+* consoleClearMessages
+* consoleEnable
+* consoleDisable
 
 DOM Api:
 ========
-*domGetDocument
-*domGetOuterHTML
-*domHideHighlight
-*domHighlightNode
-*domHighlightRect
-*domMoveTo
-*domQuerySelector
-*domQuerySelectorAll
-*domRemoveAttribute
-*domRemoveNode
-*domRequestChildNodes
-*domRequestNode
-*domResolveNode
-*domSetAttributeValue
-*domSetAttributesAsText
-*domSetNodeName
-*domSetNodeValue
-*domSetOutputHTML
+* domGetDocument
+* domGetOuterHTML
+* domHideHighlight
+* domHighlightNode
+* domHighlightRect
+* domMoveTo
+* domQuerySelector
+* domQuerySelectorAll
+* domRemoveAttribute
+* domRemoveNode
+* domRequestChildNodes
+* domRequestNode
+* domResolveNode
+* domSetAttributeValue
+* domSetAttributesAsText
+* domSetNodeName
+* domSetNodeValue
+* domSetOutputHTML
 
 DOM Debugger Api:
 =================
-*domDebuggerRemoveDomBreakpoint
-*domDebuggerRemoveEventListenerBreakpoint
-*domDebuggerRemoveXHRBreakpoint
-*domDebuggerSetDomBreakpoint
-*domDebuggerSetEventListenerBreakpoint
-*domDebuggerSetXHRBreakpoint
+* domDebuggerRemoveDomBreakpoint
+* domDebuggerRemoveEventListenerBreakpoint
+* domDebuggerRemoveXHRBreakpoint
+* domDebuggerSetDomBreakpoint
+* domDebuggerSetEventListenerBreakpoint
+* domDebuggerSetXHRBreakpoint 
 
 Runtime Api:
 ============
-*runtimeCallFunctionOn
-*runtimeEvaluate
-*runtimeGetProperties
-*runtimeReleaseObject
-*runtimeReleaseObjectGroup
+* runtimeCallFunctionOn
+* runtimeEvaluate
+* runtimeGetProperties
+* runtimeReleaseObject
+* runtimeReleaseObjectGroup 
 
 Timeline Api:
 =============
-*timelineStart
-*timelineEnd
+* timelineStart
+* timelineEnd
 
 Network Api:
 ============
-*networkCanClearBrowserCache
-*networkCanClearBrowserCookies
-*networkClearBrowserCache
-*networkClearBrowserCookies
-*networkEnableEvents
-*networkDisableEvents
-*networkGetResponseBody
-*networkSetCacheDisabled
-*networkSetExtraHTTPHeaders
-*networkSetUserAgentOverride
+* networkCanClearBrowserCache
+* networkCanClearBrowserCookies
+* networkClearBrowserCache
+* networkClearBrowserCookies
+* networkEnableEvents
+* networkDisableEvents
+* networkGetResponseBody
+* networkSetCacheDisabled
+* networkSetExtraHTTPHeaders
+* networkSetUserAgentOverride
 
 Event Api:
 ==========
