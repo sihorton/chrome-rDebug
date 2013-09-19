@@ -654,7 +654,6 @@ var rDebug = {
 				console.log(e);
 			}
 		});		
-		console.log(rDebugApi);
 		return rDebugApi;
 	}
 };
