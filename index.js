@@ -426,9 +426,9 @@ var rDebug = {
 					"id":rId
 					,"method":"Runtime.callFunctionOn"
 					,"params":{
-						"objectId":nodeId
+						"objectId":objectId
 						,"functionDeclaration":fn
-						,"arguments":JSON.stringify(args)
+						,"arguments":args
 						,"returnByValue":retByVal
 					}
 				}
